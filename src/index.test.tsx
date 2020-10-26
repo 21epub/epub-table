@@ -1,7 +1,7 @@
-import { ExampleComponent } from '.'
+import EpubTable from '.';
 
-describe('ExampleComponent', () => {
+describe('EpubTable', () => {
   it('is truthy', () => {
-    expect(ExampleComponent).toBeTruthy()
-  })
-})
+    expect(EpubTable).toBeTruthy();
+  });
+});
