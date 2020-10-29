@@ -1,35 +1,58 @@
-import React, { createContext, useReducer, useMemo } from 'react';
-import { combineReducers } from '../utils/combineReducers';
-import RowReducer, { RowInitialState } from './reducers/RowReducer';
-import ViewReducer, { ViewInitialState } from './reducers/ViewReducer';
-import ColumnReducer, { ColumnInitialState } from './reducers/ColumnReducer';
+import React, { createContext, useReducer, useMemo } from 'react'
+import { combineReducers } from '../utils/combineReducers'
+import RowReducer, { RowInitialState } from './reducers/RowReducer'
+import ViewReducer, { ViewInitialState } from './reducers/ViewReducer'
+import ColumnReducer, { ColumnInitialState } from './reducers/ColumnReducer'
 
 interface ContextProviderProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
-export const DispatchContext = createContext<any>({});
-export const StateContext = createContext<any>({});
+interface IState {
+  columnState: typeof ColumnInitialState
+  rowState: typeof RowInitialState
+  viewState: typeof ViewInitialState
+}
+
+export const DispatchContext = createContext<any>({})
+export const StateContext = createContext<any>({})
 
 const ContextProvider: React.FC<ContextProviderProps> = (props) => {
-  const { children } = props;
+  const { children } = props
 
   const [state, dispatch] = useReducer<any>(
     useMemo(
-      () => combineReducers({ columnReducer: ColumnReducer, rowReducer: RowReducer, viewReducer: ViewReducer }),
-      [],
+      () =>
+        combineReducers({
+          columnState: ColumnReducer,
+          rowState: RowReducer,
+          viewState: ViewReducer
+        }),
+      []
     ),
-    { columnState: ColumnInitialState, rowState: RowInitialState, viewState: ViewInitialState },
-  );
+    {
+      columnState: ColumnInitialState,
+      rowState: RowInitialState,
+      viewState: ViewInitialState
+    }
+  )
 
-  console.log(dispatch, 33333333333333);
-  console.log(state, 444444444444);
+  React.useEffect(() => {
+    console.log(state, 55555555555)
+  }, [state])
 
-  return (
-    <StateContext.Provider value={state}>
-      <DispatchContext.Provider value={dispatch}>{children}</DispatchContext.Provider>
-    </StateContext.Provider>
-  );
-};
+  return useMemo(() => {
+    console.log('render provider')
+    console.log(state)
+    // console.log(state.viewState, 45454545)
+    return (
+      <StateContext.Provider value={state}>
+        <DispatchContext.Provider value={dispatch}>
+          {children}
+        </DispatchContext.Provider>
+      </StateContext.Provider>
+    )
+  }, [state, dispatch])
+}
 
-export default ContextProvider;
+export default ContextProvider

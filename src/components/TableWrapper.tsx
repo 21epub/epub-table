@@ -13,6 +13,7 @@ const TableWrapper = () => {
   const handleGetColumns = () => {
     getColumns('columns')
       .then((res) => res.text())
+      .then((res) => JSON.parse(res))
       .then((res) => {
         dispatch({ type: 'setColumns', payload: res });
       });
