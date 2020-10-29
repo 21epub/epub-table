@@ -1,22 +1,39 @@
-import produce from 'immer';
+import produce from 'immer'
 
-interface ViewStateProps {
-  loading: string;
+// * ------------------------------------ init
+
+export const ViewInitialState: ViewStateType = {
+  loading: false,
+  color: 'blue'
 }
 
-export const ViewInitialState: ViewStateProps = {
-  loading: 'red',
-};
+// * ------------------------------------ inter
 
-const ViewReducer = (state = ViewInitialState, action: any) =>
-  produce(state, (draft: ViewStateProps) => {
+type ViewStateType = {
+  loading?: boolean
+  color?: string
+}
+type ViewActionType = 'toggleLoading' | 'setRedColor'
+
+// * ------------------------------------ reducer
+
+const ViewReducer = (
+  state = ViewInitialState,
+  action: { type: ViewActionType; payload?: any }
+) =>
+  produce(state, (draft: ViewStateType) => {
     switch (action.type) {
-      case 'changeLoading':
-        draft.loading = draft.loading === 'red' ? 'green' : 'red';
-        return;
+      case 'toggleLoading':
+        draft.loading = !draft.loading
+        return
+      case 'setRedColor':
+        draft.color = 'red'
+        return
       default:
-        return;
+        return
     }
-  });
+  })
 
-export default ViewReducer;
+export { ViewStateType }
+
+export default ViewReducer

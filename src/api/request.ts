@@ -4,6 +4,6 @@ export const getColumns = (param: string) => {
   return fetch(baseUrl + param);
 };
 
-export const getRows = (param: string) => {
+export const getList = (param: string) => {
   return fetch(baseUrl + param);
 };

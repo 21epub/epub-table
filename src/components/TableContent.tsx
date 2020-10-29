@@ -1,20 +1,16 @@
 import React, { useContext } from 'react'
 import ProTable from '@ant-design/pro-table'
-import { StateContext, DispatchContext } from '../context/ContextProvider'
+import { StateContext } from '../context/ContextProvider'
+// import { StateContext, DispatchContext } from '../context/ContextProvider'
 
 const TableContent = () => {
-  const { viewState } = useContext<{ viewState: { loading: string } }>(
-    StateContext
-  )
   const { columnState } = useContext(StateContext)
-  const dispatch = useContext(DispatchContext)
+  const { rowState } = useContext(StateContext)
+  // const dispatch = useContext(DispatchContext)
 
   return (
     <React.Fragment>
-      <button onClick={() => dispatch({ type: 'changeLoading' })}>
-        {viewState.loading}
-      </button>
-      <ProTable columns={columnState.value} />
+      <ProTable columns={columnState.value} dataSource={rowState?.data} />
     </React.Fragment>
   )
 }

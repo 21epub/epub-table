@@ -1,21 +1,31 @@
-import produce from 'immer';
+import produce from 'immer'
 
-export const RowInitialState: any = {};
+// * ------------------------------------ init
 
-const RowReducer = (state = RowInitialState, action: any) =>
-  produce(state, (draft: any) => {
+export const RowInitialState: RowStateType = {}
+
+// * ------------------------------------ inter
+
+type RowStateType = any
+
+type RowActionType = 'initList'
+
+// * ------------------------------------ reducer
+
+const RowReducer = (
+  state = RowInitialState,
+  action: { type: RowActionType; payload?: any }
+) =>
+  produce(state, (draft: RowStateType) => {
     switch (action.type) {
-      case 'getRows':
-        return console.log('set rows');
-      case 'createRow':
-        return console.log(draft, 'create');
-      case 'deleteRows':
-        return console.log('delete');
-      case 'updateRow':
-        return console.log('update');
-      case 'searchRow':
-        return console.log('search');
+      case 'initList':
+        draft.data = action.payload
+        return
+      default:
+        return
     }
-  });
+  })
 
-export default RowReducer;
+export { RowActionType }
+
+export default RowReducer
