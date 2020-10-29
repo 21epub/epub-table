@@ -1,10 +1,15 @@
 import React from 'react';
-
-import TableWrapper from './TableWrapper';
 import 'antd/dist/antd.css';
 
+import ContextProvider from '../context/ContextProvider';
+import TableWrapper from './TableWrapper';
+
 const ProviderWrapper = () => {
-  return <TableWrapper />;
+  return (
+    <ContextProvider>
+      <TableWrapper />
+    </ContextProvider>
+  );
 };
 
 export default ProviderWrapper;
