@@ -24,10 +24,11 @@ const ViewReducer = (
   action: { type: ViewActionType; payload?: any }
 ) =>
   produce(state, (draft: ViewStateType) => {
+    // debugger
     switch (action.type) {
       case 'toggleLoading':
         draft.loading = !draft.loading
-        return
+        return draft
       case 'setRedColor':
         draft.color = 'red'
         draft.value = 'red'

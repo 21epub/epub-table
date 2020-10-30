@@ -1,12 +1,12 @@
-import { useCallback } from 'react';
+import { useCallback } from 'react'
 
 export const useThrowableAsyncFn = (asyncFn) => {
   const fn = useCallback(
     (async) => {
-      const result = asyncFn();
-      if (result instanceof Error) throw result;
+      const result = asyncFn()
+      if (result instanceof Error) throw result
     },
-    [asyncFn],
-  );
-  return fn;
-};
+    [asyncFn]
+  )
+  return fn
+}
