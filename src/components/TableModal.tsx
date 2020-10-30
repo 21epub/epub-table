@@ -1,17 +1,17 @@
-import React, { useMemo, useContext } from 'react';
-import { StateContext } from '../context/ContextProvider';
-import { Modal } from 'antd';
+import React, { useMemo, useContext } from 'react'
+import { StateContext } from '../context/ContextProvider'
+import { Modal } from 'antd'
 
 const TableModal = () => {
-  const { viewState } = useContext(StateContext);
+  const { viewState } = useContext(StateContext)
 
   return useMemo(() => {
     return (
-      <Modal title="modal title" visible={false}>
+      <Modal title='modal title' visible={false}>
         44444444444444444
       </Modal>
-    );
-  }, [viewState]);
-};
+    )
+  }, [viewState])
+}
 
-export default TableModal;
+export default TableModal
