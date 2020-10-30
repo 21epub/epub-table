@@ -10,7 +10,7 @@ const TableContent = () => {
 
   return (
     <React.Fragment>
-      <ProTable columns={columnState.value} dataSource={rowState?.data} />
+      <ProTable columns={columnState.value} dataSource={rowState?.data?.data} />
     </React.Fragment>
   )
 }

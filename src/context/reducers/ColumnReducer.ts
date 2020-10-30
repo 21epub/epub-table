@@ -1,5 +1,12 @@
 import produce from 'immer'
 
+// * ------------------------------------ inter
+
+type ColumnStateType = {
+  value: any[]
+}
+type ColumnActionType = 'initColumns'
+
 // * ------------------------------------ init
 
 export const ColumnInitialState: ColumnStateType = {
@@ -12,13 +19,6 @@ export const ColumnInitialState: ColumnStateType = {
   ]
 }
 
-// * ------------------------------------ inter
-
-type ColumnStateType = {
-  value: any[]
-}
-type ColumnActionType = 'initColumns'
-
 // * ------------------------------------ reducer
 
 const ColumnReducer = (
@@ -30,7 +30,7 @@ const ColumnReducer = (
       case 'initColumns':
         console.log(action.payload, 7777777777777)
         draft.value = action.payload
-        return
+        return draft
       default:
         return ColumnInitialState
     }

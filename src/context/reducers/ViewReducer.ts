@@ -1,12 +1,5 @@
 import produce from 'immer'
 
-// * ------------------------------------ init
-
-export const ViewInitialState: ViewStateType = {
-  loading: false,
-  color: 'blue'
-}
-
 // * ------------------------------------ inter
 
 type ViewStateType = {
@@ -15,6 +8,13 @@ type ViewStateType = {
 }
 type ViewActionType = 'toggleLoading' | 'setRedColor'
 
+// * ------------------------------------ init
+
+export const ViewInitialState: ViewStateType = {
+  loading: false,
+  color: 'blue'
+}
+
 // * ------------------------------------ reducer
 
 const ViewReducer = (
@@ -22,15 +22,16 @@ const ViewReducer = (
   action: { type: ViewActionType; payload?: any }
 ) =>
   produce(state, (draft: ViewStateType) => {
+    // debugger
     switch (action.type) {
       case 'toggleLoading':
         draft.loading = !draft.loading
-        return
+        return draft
       case 'setRedColor':
         draft.color = 'red'
-        return
+        return draft
       default:
-        return
+        return draft
     }
   })
 

@@ -1,14 +1,13 @@
 import produce from 'immer'
 
-// * ------------------------------------ init
-
-export const RowInitialState: RowStateType = {}
-
 // * ------------------------------------ inter
 
 type RowStateType = any
 
 type RowActionType = 'initList'
+// * ------------------------------------ init
+
+export const RowInitialState: RowStateType = {}
 
 // * ------------------------------------ reducer
 
@@ -20,9 +19,9 @@ const RowReducer = (
     switch (action.type) {
       case 'initList':
         draft.data = action.payload
-        return
+        return draft
       default:
-        return
+        return draft
     }
   })
 

@@ -1,3 +1,4 @@
+/* eslint no-unused-vars: 0 */
 import React, { createContext, useReducer, useMemo } from 'react'
 import { combineReducers } from '../utils/combineReducers'
 import RowReducer, {
@@ -62,7 +63,7 @@ const ContextProvider: React.FC<ContextProviderProps> = (props) => {
   }, [state])
 
   return useMemo(() => {
-    console.log('render provider')
+    console.log('render provider:', state)
     /* TODO: useing TS "as" is too violent, should write better TS for useReducer */
     return (
       <StateContext.Provider value={state as typeof InitState}>
