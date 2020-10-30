@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
 const TableForm = () => {
-  return <React.Fragment>2222222222222222222222222222222form</React.Fragment>;
-};
+  return <React.Fragment></React.Fragment>
+}
 
-export default TableForm;
+export default TableForm

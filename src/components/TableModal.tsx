@@ -8,7 +8,7 @@ const TableModal = () => {
   return useMemo(() => {
     return (
       <Modal title="modal title" visible={false}>
-        44444444444444444
+        modal
       </Modal>
     );
   }, [viewState]);

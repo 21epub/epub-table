@@ -2,9 +2,10 @@ import produce from 'immer'
 
 // * ------------------------------------ init
 
-export const ViewInitialState: ViewStateType = {
+const ViewInitialState: ViewStateType = {
   loading: false,
-  color: 'blue'
+  color: 'blue',
+  value: 'sb'
 }
 
 // * ------------------------------------ inter
@@ -12,6 +13,7 @@ export const ViewInitialState: ViewStateType = {
 type ViewStateType = {
   loading?: boolean
   color?: string
+  value?: string
 }
 type ViewActionType = 'toggleLoading' | 'setRedColor'
 
@@ -28,12 +30,13 @@ const ViewReducer = (
         return
       case 'setRedColor':
         draft.color = 'red'
+        draft.value = 'red'
         return
       default:
-        return
+        break
     }
   })
 
-export { ViewStateType }
+export { ViewStateType, ViewInitialState }
 
 export default ViewReducer

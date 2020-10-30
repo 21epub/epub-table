@@ -49,9 +49,9 @@
     "valueType": "date"
   },
   {
-    "title": "销毁时间",
+    "title": "关闭时间",
     "key": "since",
-    "dataIndex": "deleted_at",
+    "dataIndex": "closed_at",
     "valueType": "date"
   }
 ]

@@ -9,25 +9,25 @@ import { getColumns, getList } from '../api/request'
 
 const TableWrapper = () => {
   const dispatch = useContext(DispatchContext)
-
+  
   const handleGetColumns = () => {
     getColumns('columns')
-      .then((res) => res.text())
+    .then((res) => res.text())
       .then((res) => JSON.parse(res))
       .then((res) => {
         dispatch({ type: 'initColumns', payload: res })
       })
   }
-
+  
   const handleGetDataSource = () => {
     getList('list')
-      .then((res) => res.text())
+    .then((res) => res.text())
       .then((res) => JSON.parse(res))
       .then((res) => {
         dispatch({ type: 'initList', payload: res })
       })
   }
-
+  
   useEffect(() => {
     handleGetColumns()
     handleGetDataSource()

@@ -2,7 +2,7 @@ import produce from 'immer'
 
 // * ------------------------------------ init
 
-export const ColumnInitialState: ColumnStateType = {
+const ColumnInitialState: ColumnStateType = {
   value: [
     {
       dataIndex: 'index',
@@ -26,16 +26,16 @@ const ColumnReducer = (
   action: { type: ColumnActionType; payload?: any }
 ) =>
   produce(state, (draft: ColumnStateType) => {
+    // console.log(action.type, 777)
     switch (action.type) {
       case 'initColumns':
-        console.log(action.payload, 7777777777777)
         draft.value = action.payload
         return
       default:
-        return ColumnInitialState
+        break
     }
   })
 
-export { ColumnActionType }
+export { ColumnActionType, ColumnInitialState }
 
 export default ColumnReducer

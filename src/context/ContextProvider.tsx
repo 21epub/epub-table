@@ -56,11 +56,6 @@ const ContextProvider: React.FC<ContextProviderProps> = (props) => {
     }
   )
 
-  React.useEffect(() => {
-    console.log(state, 55555555555)
-    console.log(dispatch, 66666666)
-  }, [state])
-
   return useMemo(() => {
     console.log('render provider')
     /* TODO: useing TS "as" is too violent, should write better TS for useReducer */
@@ -71,7 +66,7 @@ const ContextProvider: React.FC<ContextProviderProps> = (props) => {
         </DispatchContext.Provider>
       </StateContext.Provider>
     )
-  }, [state, dispatch])
+  }, [state, dispatch, children])
 }
 
 export default ContextProvider
