@@ -30,7 +30,7 @@ const ColumnReducer = (
     switch (action.type) {
       case 'initColumns':
         draft.value = action.payload
-        return draft
+        return
       default:
         break
     }

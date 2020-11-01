@@ -1,6 +1,6 @@
 import React, { useContext, useMemo, useState, useEffect } from 'react'
 import ProTable from '@ant-design/pro-table'
-import { StateContext } from '../context/ContextProvider'
+import { StateContext, DispatchContext } from '../context/ContextProvider'
 import { PlusOutlined } from '@ant-design/icons'
 import { Button, Divider } from 'antd'
 import { PaginationProps } from 'antd/es/pagination'
@@ -30,36 +30,47 @@ const RenderBar = () => [
   </Button>
 ]
 
-const renderOptionsObject = () => {
-  const ModifyAction = () => <WrapperButton type='link'>修改</WrapperButton>
-  const DeleteAction = () => (
-    <WrapperButton type='link' danger>
-      删除
-    </WrapperButton>
-  )
-
-  return {
-    title: '操作',
-    dataIndex: 23,
-    key: 'option',
-    valueType: 'option',
-    render: () => (
-      <WrapperOptions>
-        <ModifyAction />
-        <Divider type='vertical' />
-        <DeleteAction />
-      </WrapperOptions>
-    )
-  }
-}
-
 // * ------------------------------------ main
 
 const TableContent = () => {
   const { columnState } = useContext(StateContext)
   const { rowState } = useContext(StateContext)
+  const dispatch = useContext(DispatchContext)
 
   const [columns, setColumns] = useState<any>(columnState.value)
+
+  const handleTableListModify = () => {
+    dispatch({ type: {} })
+  }
+
+  const handleTableListDelete = () => {}
+
+  const renderOptionsObject = () => {
+    const ModifyAction = () => (
+      <WrapperButton type='link' onClick={handleTableListModify}>
+        修改
+      </WrapperButton>
+    )
+    const DeleteAction = () => (
+      <WrapperButton type='link' onClick={handleTableListDelete} danger>
+        删除
+      </WrapperButton>
+    )
+
+    return {
+      title: '操作',
+      dataIndex: 23,
+      key: 'option',
+      valueType: 'option',
+      render: () => (
+        <WrapperOptions>
+          <ModifyAction />
+          <Divider type='vertical' />
+          <DeleteAction />
+        </WrapperOptions>
+      )
+    }
+  }
 
   useEffect(() => {
     setColumns(columnState.value.concat(renderOptionsObject()))
