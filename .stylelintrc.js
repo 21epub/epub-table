@@ -5,10 +5,7 @@ module.exports = {
     'stylelint-config-rational-order',
     'stylelint-config-prettier'
   ],
-  plugins: [
-    'stylelint-order',
-    'stylelint-declaration-block-no-ignored-properties'
-  ],
+  plugins: ['stylelint-order', 'stylelint-declaration-block-no-ignored-properties'],
   rules: {
     'no-descending-specificity': null,
     //https://github.com/stylelint/stylelint/issues/4114

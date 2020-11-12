@@ -1,9 +1,23 @@
 import React from 'react'
-
-import { ExampleComponent } from '../src'
+import { EpubTable } from '../src'
 
 const App = () => {
-  return <ExampleComponent text='Create React TS Parcel Library Example 😄' />
+  return (
+    <EpubTable
+      mode='auto'
+      name='table'
+      tableConfig={{
+        headerTitle: '低级表格'
+      }}
+      modalConfig={{}}
+      // getRowsUrl={baseUrl}
+      // addRowsUrl={baseUrl}
+      // deleteRowUrl={baseUrl}
+      // deleteRowsUrl={baseUrl}
+      // updateRowUrl={baseUrl}
+      // updateRowsUrl={baseUrl}
+    />
+  )
 }
 
 export default App

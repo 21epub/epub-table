@@ -27,7 +27,6 @@ class Example extends Component {
 
 For Details: See Example
 
-
 ## Developing and running on localhost
 
 First install dependencies and then install peerDeps for parcel dev:
