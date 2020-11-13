@@ -3,7 +3,6 @@ import RxjsStore, { RxjsStoreReducerParams } from '@21epub/react-rxjs-store'
 // * ------------------------------------------------------------------------------- init
 
 interface TableState {
-  modalType?: 'add' | 'modify' | 'delete'
   fields?: any
   dataSource?: {
     data?: any

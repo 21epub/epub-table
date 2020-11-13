@@ -1,5 +1,5 @@
 import React, { FC, memo } from 'react'
 
-export const ModalForm: FC = memo(() => {
+export const Form: FC = memo(() => {
   return <div>form render</div>
 })

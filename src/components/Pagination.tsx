@@ -1,5 +1,5 @@
-import React from 'react'
-
 export const Pagination = () => {
-  return <div>pagination</div>
+  return {
+    pageSize: 10
+  }
 }

@@ -1,10 +1,12 @@
 import React, { FC, memo } from 'react'
 import ProTable, { ProTableProps } from '@ant-design/pro-table'
-import { TableContext } from '../context'
+import { TableContext, ModalContext } from '../context'
+
 import 'antd/dist/antd.css'
 import styled from 'styled-components'
 import { Button, Divider } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
+import { ReloadOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons'
+import { Pagination } from './Pagination'
 
 // * ------------------------------------ style
 
@@ -28,20 +30,18 @@ const ProTableInitProps: ProTableProps<any, any> = {
 
 export const Table: FC = memo((props) => {
   const [tableState] = TableContext.useRxjsStore()
+  const modalActions = ModalContext.reducers
 
   const newProps = { ...ProTableInitProps, ...props }
 
-  const handleDataUpdate = () => {}
-  const handleDataDelete = () => {}
-
   const renderOptionsObject = () => {
     const ModifyAction = () => (
-      <WrapperButton type='link' onClick={handleDataUpdate}>
+      <WrapperButton type='link' onClick={() => modalActions.toggleModal('update')}>
         修改
       </WrapperButton>
     )
     const DeleteAction = () => (
-      <WrapperButton type='link' onClick={handleDataDelete} danger>
+      <WrapperButton type='link' onClick={() => modalActions.toggleModal('delete')} danger>
         删除
       </WrapperButton>
     )
@@ -62,7 +62,19 @@ export const Table: FC = memo((props) => {
   }
 
   const RenderBar = () => [
-    <Button key='button' icon={<PlusOutlined />} type='primary'>
+    <Button key='button' icon={<ReloadOutlined />} type='primary' onClick={() => modalActions.toggleModal('delete')}>
+      批量更新
+    </Button>,
+    <Button
+      key='button'
+      icon={<DeleteOutlined />}
+      type='primary'
+      danger
+      onClick={() => modalActions.toggleModal('add')}
+    >
+      批量删除
+    </Button>,
+    <Button key='button' icon={<PlusOutlined />} type='primary' onClick={() => modalActions.toggleModal('delete')}>
       新建
     </Button>
   ]
@@ -72,14 +84,15 @@ export const Table: FC = memo((props) => {
   return (
     <ProTable
       {...newProps}
+      search={false}
+      rowKey='id'
+      rowSelection={{}}
       dateFormatter='string'
-      columns={col}
-      dataSource={tableState.dataSource?.data}
       toolBarRender={RenderBar}
+      columns={col}
       loading={!tableState.dataSource?.data}
-      pagination={{
-        pageSize: 10
-      }}
+      dataSource={tableState.dataSource?.data}
+      pagination={Pagination()}
     />
   )
 })
