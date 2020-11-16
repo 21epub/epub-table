@@ -5,7 +5,7 @@ import RxjsStore, { RxjsStoreReducerParams } from '@21epub/react-rxjs-store'
 interface TableState {
   fields?: any
   dataSource?: {
-    data?: any
+    data: any[]
     page: number
     success: boolean
     total: number

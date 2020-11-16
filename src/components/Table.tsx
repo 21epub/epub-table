@@ -4,9 +4,14 @@ import { TableContext, ModalContext } from '../context'
 
 import 'antd/dist/antd.css'
 import styled from 'styled-components'
-import { Button, Divider } from 'antd'
+import { Button, Divider, Empty } from 'antd'
 import { ReloadOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons'
-import { Pagination } from './Pagination'
+
+// * ------------------------------------------------------------------------------- inter
+
+type DataType = {
+  data: any[]
+}
 
 // * ------------------------------------ style
 
@@ -19,11 +24,20 @@ const WrapperButton = styled(Button)`
   padding-left: 0;
   padding-right: 0;
 `
+
 // * ------------------------------------------------------------------------------- init
 
-const ProTableInitProps: ProTableProps<any, any> = {
+const ProTableInitProps: ProTableProps<DataType, any> = {
   rowKey: 'id',
   headerTitle: '高级表格'
+}
+
+const isEmptyData = (data?: any[]) => {
+  if (!data) {
+    return true
+  } else {
+    return data.length === 0
+  }
 }
 
 // * ------------------------------------------------------------------------------- comp
@@ -79,7 +93,15 @@ export const Table: FC = memo((props) => {
     </Button>
   ]
 
+  const handlePaginationChange = (current: number, size?: number) => {
+    console.log(current, size)
+  }
   const col = tableState.fields?.concat(renderOptionsObject())
+  const dataSource = tableState.dataSource
+
+  const loading = isEmptyData(dataSource?.data)
+  const pageSize = dataSource?.data?.length ? dataSource?.data?.length : 20
+  const total = pageSize ? dataSource?.total : pageSize
 
   return (
     <ProTable
@@ -90,9 +112,18 @@ export const Table: FC = memo((props) => {
       dateFormatter='string'
       toolBarRender={RenderBar}
       columns={col}
-      loading={!tableState.dataSource?.data}
-      dataSource={tableState.dataSource?.data}
-      pagination={Pagination()}
+      loading={loading}
+      dataSource={dataSource?.data}
+      locale={{ emptyText: <Empty description='暂无数据' /> }}
+      pagination={{
+        size: 'small',
+        current: dataSource?.page,
+        total: total,
+        pageSize: pageSize,
+        pageSizeOptions: ['10', '20', '50'],
+        locale: { items_per_page: '条/页' },
+        onChange: (page: number, pagesSize?: number) => handlePaginationChange(page, pagesSize)
+      }}
     />
   )
 })
