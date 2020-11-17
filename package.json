@@ -23,6 +23,7 @@
   "scripts": {
     "clean": "rm dist/bundle.js",
     "start": "parcel example/index.html --out-dir ./build",
+    "start:proxy": "node ./scripts/proxy-server.js",
     "build-prod": "parcel build example/index.html --out-dir ./build",
     "test": "jest --coverage",
     "lint": "run-s lint:js lint:style lint:prettier",
@@ -37,7 +38,8 @@
     "release:alpha": "npm run release -- --prerelease alpha",
     "commit": "lint-staged && npx git-cz",
     "prepublishOnly": "run-s lint test build",
-    "install-peers": "npm-install-peers"
+    "install-peers": "npm-install-peers",
+    "mock": "node server.js"
   },
   "lint-staged": {
     "**/*.less": "stylelint --fix --syntax less",
@@ -58,6 +60,7 @@
   "dependencies": {
     "@21epub/react-rxjs-store": "^0.2.0",
     "@ant-design/pro-table": "^2.9.12",
+    "@svrx/svrx": "^1.1.4",
     "antd": "^4.7.3",
     "immer": "^7.0.14",
     "react": "^17.0.1",
@@ -102,6 +105,7 @@
     "npm-run-all": "4.1.5",
     "parcel-bundler": "1.12.4",
     "parcel-plugin-less-js-enabled": "^1.0.2",
+    "parcel-proxy-server": "1.1.0",
     "postcss-modules": "3.2.2",
     "prettier": "2.1.2",
     "stylelint": "^13.0.0",

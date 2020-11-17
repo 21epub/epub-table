@@ -4,6 +4,7 @@ import { Table } from './components/Table'
 import { Modal } from './components/Modal'
 import { TableContext } from './context'
 import { getFields, getTableData } from './api'
+import request from './utils/request'
 
 const baseUrl = 'https://yapi.epub360.com/mock/104/v1/api/tables/11111/'
 
@@ -20,6 +21,12 @@ export const EpubTable: React.FC<TableProps> = (props) => {
     })
     getTableData(baseUrl + 'data/').then((res) => {
       TableActions.setDataSource(res)
+    })
+  }, [])
+
+  useEffect(() => {
+    request('http://localhost:8088/api/posts').then((res) => {
+      console.log(res, 222222222222)
     })
   }, [])
 
