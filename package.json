@@ -39,7 +39,7 @@
     "commit": "lint-staged && npx git-cz",
     "prepublishOnly": "run-s lint test build",
     "install-peers": "npm-install-peers",
-    "mock": "node server.js"
+    "mock": "node ./scripts/svrx-server.js"
   },
   "lint-staged": {
     "**/*.less": "stylelint --fix --syntax less",

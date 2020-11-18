@@ -1,7 +1,7 @@
 const svrx = require('@svrx/svrx')
 
 svrx({
-  port: 8088,
+  port: 7000,
   open: false,
   route: 'server/route.ts',
   plugins: [

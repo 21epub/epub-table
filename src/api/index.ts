@@ -1,14 +1,15 @@
 import request from '../utils/request'
 
-export const getFields = (url: string) => {
-  return request(url, {
+export const baseUrl = 'http://localhost:7000/api/'
+
+export const getFields = (param: string) => {
+  return request(baseUrl + param, {
     method: 'get'
   })
 }
 
-export const getTableData = (url: string) => {
-  console.log(url, 99)
-  return request(url, {
+export const getTableData = (param: string) => {
+  return request(baseUrl + param, {
     method: 'get'
   })
 }
